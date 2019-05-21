@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Fromo",
+        "presupuesto": 10,
+        "tiempo": 8,
+        "preferencias": "Aventura"
+    },
+    {
+        "id": 2,
+        "nombre": "Gandalf",
+        "presupuesto": 100,
+        "tiempo": 5,
+        "preferencias": "Paisajes"
+    },
+    {
+        "id": 3,
+        "nombre": "Sam.",
+        "presupuesto": 36,
+        "tiempo": 8,
+        "preferencias": "Degustacion"
+    }
+ ]

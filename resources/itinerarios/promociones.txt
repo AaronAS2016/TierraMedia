@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Pack Aventura",
+        "atracciones": [1, 4, 8],
+        "tipo_promocion" : "PromocionPorcentual",
+        "descuento": 20
+    },
+    {
+        "id": 2,
+        "nombre": "Pack Degustacion",
+        "atracciones": [ 3 , 6],
+        "tipo_promocion" : "PromocionAxB",
+        "descuento": 3
+    },
+    {
+        "id": 3,
+        "nombre": "Pack Paisaje",
+        "atracciones": [ 2, 5, 7],
+        "tipo_promocion": "PromocionAbsoluta",
+        "descuento": 15
+    }
+ ]

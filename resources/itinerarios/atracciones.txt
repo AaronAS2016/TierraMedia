@@ -1,0 +1,73 @@
+[
+        {
+            "id": 1,
+            "nombre": "Moria",
+            "costo": 10,
+            "tiempo": 2,
+            "cupo": 6,
+            "tipo": "aventura"
+        },
+
+        {
+            "id": 2,
+            "nombre": "Minas Tirith",
+            "costo": 5,
+            "tiempo": 2.5,
+            "cupo": 25
+            "tipo": "paisaje"
+        },
+
+        {
+            "id": 3,
+            "nombre": "La Comarca",
+            "costo": 3,
+            "tiempo": 6.5,
+            "cupo": 150,
+            "tipo": "degustacion"
+        },
+
+		{
+			"id": 4,
+			"nombre": "Mordor",
+			"costo": 25,
+			"tiempo": 2.5,
+			"cupo": 25,
+			"tipo": "aventura"
+		},
+
+		{
+			"id": 5,
+			"nombre": "Abismo de Helm",
+			"costo": 5,
+			"tiempo": 2,
+			"cupo": 15,
+			"tipo": "paisaje"
+		},
+
+		{
+			"id": 6,
+			"nombre": "Lothlorien",
+			"costo": 35,
+			"tiempo": 1,
+			"cupo": 30,
+			"tipo": "degustacion"
+		},
+
+		{
+			"id": 7,
+			"nombre": "Erebor",
+			"costo": 12,
+			"tiempo": 3,
+			"cupo": 32,
+			"tipo": "paisaje"
+		},
+
+		{
+			"id": 8,
+			"nombre": "Bosque Negro",
+			"costo": 3,
+			"tiempo": 4,
+			"cupo": 12,
+			"tipo": "aventura"
+		}
+   ]
