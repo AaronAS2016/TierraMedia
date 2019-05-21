@@ -3,32 +3,32 @@ package atraccion;
 public class Atraccion implements Comparable<Atraccion>{
 	
 	private int id;
-	private Integer costo;
-	private Double tiempo;
+	private int costo;
+	private double tiempo;
 	private int cupo;
-	private String descripcion;
+	private String nombre;
 		
-	public Atraccion(int id,  int costo, Double tiempo, int cupo, String descripcion){
+	public Atraccion(int id,  int costo, double tiempo, int cupo, String nombre){
 		this.id = id;
 		this.costo = costo;
 		this.tiempo = tiempo;
 		this.cupo = cupo;
-		this.descripcion = descripcion;
+		this.nombre = nombre;
 	}
 	
-	public String obtenerDescripcion(){
-		return this.descripcion;
+	public String obtenerNombre(){
+		return this.nombre;
 	}
 	
     public int obtenerId() {
 		return id;
 	}
     
-    public Integer obtenerCosto() {
+    public int obtenerCosto() {
         return costo;
     }
 
-    public Double obtenerDuracion() {
+    public double obtenerDuracion() {
         return tiempo;
     }
     public int obtenerCuposDisponbiles() {
@@ -37,10 +37,12 @@ public class Atraccion implements Comparable<Atraccion>{
 
 	@Override
 	public int compareTo(Atraccion atraccionAComparar) {
-		int orden;
-		orden = obtenerCosto().compareTo(atraccionAComparar.obtenerCosto());
-		if(orden == 0){
-			orden = obtenerDuracion().compareTo(atraccionAComparar.obtenerDuracion());
+		int orden = -1;
+		boolean esMayor = (this.obtenerCosto() > atraccionAComparar.obtenerCosto());
+		if(esMayor){
+			orden = 1;
+		}else if(this.obtenerCosto() == atraccionAComparar.obtenerCosto()) {
+			orden = 0;
 		}
 		return orden;
 	}

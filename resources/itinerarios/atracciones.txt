@@ -13,7 +13,7 @@
             "nombre": "Minas Tirith",
             "costo": 5,
             "tiempo": 2.5,
-            "cupo": 25
+            "cupo": 25,
             "tipo": "paisaje"
         },
 
