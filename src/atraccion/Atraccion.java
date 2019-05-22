@@ -2,10 +2,10 @@ package atraccion;
 
 import tierramedia.Producto;
 
-public class Atraccion extends Producto{
+public class Atraccion extends Producto {
 
 	private int cupo;
-	
+
 	public Atraccion(int id, int costo, double tiempo, int cupo, String nombre, String tipo) {
 		this.id = id;
 		this.costo = costo;
@@ -19,7 +19,5 @@ public class Atraccion extends Producto{
 	public int obtenerCuposDisponbiles() {
 		return cupo;
 	}
-
-
 
 }
