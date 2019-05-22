@@ -20,6 +20,18 @@ public class RecomendadorDeAtracciones {
 	private ArrayList<PaquetePromocional> paquetesPromocionales;
 	private ArrayList<Producto> productosRecomendados;
 
+	
+	/** 
+	 * <h1>Recomendador de Atracciones </h1>
+	 * 
+	 * Para un determinado usuario le permite la funcionalidad de recibir recomendaciones, aceptar y generar la factura con todos los productos que acepte.
+	 * 
+	 * <br><br> pre: Itinerarios creados en resources con la informacion de las preferencias de usuario, atracciones y paquetes promocionales
+	 * 
+	 * @param idTurista: Id del turista que se le quiera recomendar atracciones
+	 * 
+	 * 
+	 * */
 	public RecomendadorDeAtracciones(int idTurista) {
 		if (idTurista < 0) {
 			throw new Error("El ID debe ser un valor positivo");

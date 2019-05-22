@@ -3,7 +3,7 @@
         "id": 9,
         "nombre": "Pack Aventura",
         "atracciones": [1, 4, 8],
-        "tipo_promocion" : "PromocionFija",
+        "tipo_promocion" : "PromocionPorcentual",
         "descuento": 20,
         "tipo" : "aventuura"
     },

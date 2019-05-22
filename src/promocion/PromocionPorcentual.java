@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import atraccion.Atraccion;
 
-public class PromocionFija implements Promocion {
+public class PromocionPorcentual implements Promocion {
 
 	@Override
 	public int calcularPromocion(ArrayList<Atraccion> atracciones, int descuento) {
-		return (sumarPrecios(atracciones) * descuento)/100;
+		int precioTotal = sumarPrecios(atracciones);
+		int valorDelDescuento = (precioTotal * descuento) / 100;
+		return precioTotal - valorDelDescuento;
 	}
 	
 	private int sumarPrecios(ArrayList<Atraccion> atracciones){
