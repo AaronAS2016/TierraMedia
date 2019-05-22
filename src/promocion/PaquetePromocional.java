@@ -8,7 +8,6 @@ import atraccion.Atraccion;
 public class PaquetePromocional extends Producto {
 
 	private int descuento;
-	private ArrayList<Atraccion> atracciones;
 	private Promocion promocion;
 
 	public PaquetePromocional(int id, String nombre, double duracion, int descuento,
@@ -21,15 +20,12 @@ public class PaquetePromocional extends Producto {
 		this.atracciones = atracciones;
 		this.tipo = tipo;
 		this.costo = calcularPromocion();
+		this.tipoProducto = "Paquete";
 	}
 
 	public int calcularPromocion() {
 		return promocion.calcularPromocion(atracciones, descuento);
 	}
 	
-	public ArrayList<Atraccion> obtenerAtracciones(){
-		return this.atracciones;
-	}
-
 
 }

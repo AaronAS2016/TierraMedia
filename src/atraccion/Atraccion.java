@@ -13,6 +13,7 @@ public class Atraccion extends Producto implements Comparable<Atraccion> {
 		this.cupo = cupo;
 		this.nombre = nombre;
 		this.tipo = tipo;
+		this.tipoProducto = "Atraccion";
 	}
 
 	public int obtenerCuposDisponbiles() {
