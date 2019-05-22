@@ -50,9 +50,10 @@ public class RecomendadorDeAtracciones {
 		
 		boolean verificarTIpo = false;
 		if(productosRecomendados.size() == 0){
+			 
 			calcularAtraccionesRecomendadas(verificarTIpo);
+			verificarTIpo = (productosRecomendados.size() >= 0);
 		}
-		verificarTIpo = (productosRecomendados.size() == 0);
 		
 		if(verificarTIpo){
 			calcularAtraccionesRecomendadas(verificarTIpo);
@@ -137,6 +138,7 @@ public class RecomendadorDeAtracciones {
 			System.out.println("leAlcanza:" + leAlcanza + " / Dinero atraccion = " + paquete.obtenerCosto() + " - Dinero turista:" + turista.obtenerPresupuesto());
 			System.out.println("tieneTiempo:" + tieneTiempo + " / Tiempo atraccion = " + paquete.obtenerDuracion() + " - Tiempo turista:" + turista.obtenerTiempoDisponible());
 			System.out.println("esDeSuTipo:" + esDeSuTipo + " / Tipo atraccion = " + paquete.obtenerTipo() + " - Tipo turista:" + turista.obtenerPreferencia() );
+			System.out.println("verificarTipo:" + verificarTIpo);
 			System.out.println("--------------------------");
 			
 			if (leAlcanza && tieneTiempo && (esDeSuTipo || verificarTIpo)) { 
@@ -162,6 +164,7 @@ public class RecomendadorDeAtracciones {
 			System.out.println("hayCupo:" + hayCupo);
 			System.out.println("tieneTiempo:" + tieneTiempo + " / Tiempo atraccion = " + atraccion.obtenerDuracion() + " - Tiempo turista:" + turista.obtenerTiempoDisponible());
 			System.out.println("esDeSuTipo:" + esDeSuTipo + " / Tipo atraccion = " + atraccion.obtenerTipo() + " - Tipo turista:" + turista.obtenerPreferencia() );
+			System.out.println("verificarTipo:" + verificarTIpo);
 			System.out.println("--------------------------" );
 			
 			if (leAlcanza && hayCupo && tieneTiempo && (esDeSuTipo || verificarTIpo)) {
