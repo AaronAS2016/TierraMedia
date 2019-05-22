@@ -5,7 +5,7 @@
         "atracciones": [1, 4, 8],
         "tipo_promocion" : "PromocionPorcentual",
         "descuento": 20,
-        "tipo" : "aventuura"
+        "tipo" : "aventura"
     },
     {
         "id": 10,

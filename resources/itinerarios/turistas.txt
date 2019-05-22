@@ -11,7 +11,7 @@
         "nombre": "Gandalf",
         "presupuesto": 100,
         "tiempo": 5,
-        "preferencias": "paisajes"
+        "preferencias": "paisaje"
     },
     {
         "id": 3,

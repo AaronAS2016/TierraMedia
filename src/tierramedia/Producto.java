@@ -48,13 +48,19 @@ public abstract class Producto implements Comparable<Producto>{
 	
 	@Override
 	public int compareTo(Producto productoAComparar) {
-		int orden = -1;
+		int orden = 1;
 		boolean esMayor = (this.obtenerCosto() > productoAComparar
 				.obtenerCosto());
 		if (esMayor) {
-			orden = 1;
+			orden = -1;
 		} else if (this.obtenerCosto() == productoAComparar.obtenerCosto()) {
-			orden = 0;
+			if(this.obtenerDuracion() > productoAComparar.obtenerDuracion()) {
+				orden = -1;
+			}else if(this.obtenerDuracion() == productoAComparar.obtenerDuracion()) {
+				orden = 0;
+			}else {
+				orden = 1;
+			}
 		}
 		return orden;
 	}
