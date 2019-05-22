@@ -4,20 +4,35 @@
         "nombre": "Fromo",
         "presupuesto": 10,
         "tiempo": 8,
-        "preferencias": "Aventura"
+        "preferencias": "aventura"
     },
     {
         "id": 2,
         "nombre": "Gandalf",
         "presupuesto": 100,
         "tiempo": 5,
-        "preferencias": "Paisajes"
+        "preferencias": "paisajes"
     },
     {
         "id": 3,
         "nombre": "Sam.",
         "presupuesto": 36,
         "tiempo": 8,
-        "preferencias": "Degustacion"
+        "preferencias": "degustacion"
+    },
+    {
+        "id": 4,
+        "nombre": "Elrond.",
+        "presupuesto": 3,
+        "tiempo": 5,
+        "preferencias": "aventura"
+    },
+    {
+        "id": 5,
+        "nombre": "Aragorn.",
+        "presupuesto": 30,
+        "tiempo": 8,
+        "preferencias": "degustacion"
     }
+ 
  ]

@@ -117,13 +117,13 @@ public class LectorTest {
 	}
 	
 	@Test
-	public void obtenerNombrePaquetePromocionalConId1() {
+	public void obtenerNombrePaquetePromocionalConId9() {
 		ArrayList<PaquetePromocional> paquetes = Lector.obtenerPaquetes();
 		assertEquals("Pack Aventura", paquetes.get(0).obtenerNombre());
 	}
 	
 	@Test
-	public void obtenerNombrePaquetePromocionalConId2() {
+	public void obtenerNombrePaquetePromocionalConId10() {
 		ArrayList<PaquetePromocional> paquetes = Lector.obtenerPaquetes();
 		assertEquals("Pack Degustacion", paquetes.get(1).obtenerNombre());
 	}

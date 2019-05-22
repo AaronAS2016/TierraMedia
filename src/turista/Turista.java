@@ -2,8 +2,6 @@ package turista;
 
 public class Turista {
 
-	
-	
 	private int id;
 	private String nombre;
     private int presupuesto;
@@ -23,7 +21,7 @@ public class Turista {
         return this.presupuesto;
     }
 
-    public void cobrarAtraccion(int costo) {
+    public void cobrarAtraccion(int costo, double tiempo) {
     	if(costo > presupuesto){
     		throw new Error("Presupuesto no suficiente para cobrar esta atracci�n");
     	}

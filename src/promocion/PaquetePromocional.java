@@ -2,40 +2,34 @@ package promocion;
 
 import java.util.ArrayList;
 
+import tierramedia.Producto;
 import atraccion.Atraccion;
 
-public class PaquetePromocional {
+public class PaquetePromocional extends Producto {
 
-	private int id;
-	private String nombreDelPaquete;
-	private double duracion;
 	private int descuento;
 	private ArrayList<Atraccion> atracciones;
 	private Promocion promocion;
 
-	public PaquetePromocional(int id, String nombreDelPaquete, double duracion, int descuento,
-			ArrayList<Atraccion> atracciones, Promocion promocion) {
+	public PaquetePromocional(int id, String nombre, double duracion, int descuento,
+			ArrayList<Atraccion> atracciones, Promocion promocion, String tipo) {
 		this.id = id;
-		this.nombreDelPaquete = nombreDelPaquete;
+		this.nombre = nombre;
 		this.duracion = duracion;
 		this.descuento = descuento;
+		this.promocion = promocion;
 		this.atracciones = atracciones;
+		this.tipo = tipo;
+		this.costo = calcularPromocion();
 	}
 
 	public int calcularPromocion() {
 		return promocion.calcularPromocion(atracciones, descuento);
 	}
-
-	public int obtenerId() {
-		return this.id;
+	
+	public ArrayList<Atraccion> obtenerAtracciones(){
+		return this.atracciones;
 	}
 
-	public double obtenerDuracion() {
-		return this.duracion;
-	}
-
-	public String obtenerNombre() {
-		return this.nombreDelPaquete;
-	}
 
 }

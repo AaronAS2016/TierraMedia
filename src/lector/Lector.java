@@ -18,6 +18,7 @@ import turista.Turista;
 public class Lector {
 
 	
+	
 	public static ArrayList<PaquetePromocional> obtenerPaquetes(){
 		
 		JsonArray listaDePaquetesPromocionales = leerItinerario("resources/itinerarios/promociones.txt").getAsJsonArray();
@@ -31,6 +32,7 @@ public class Lector {
 			ArrayList<Atraccion> atracciones = Calculadora.calcularAtracciones(dataPromocion.get("atracciones").getAsJsonArray());
 			double tiempo = Calculadora.calcularTiempo(atracciones);
 			String promocionTipo = dataPromocion.get("tipo_promocion").getAsString();
+			String tipo = dataPromocion.get("tipo").getAsString();
 			Promocion promocion = null;
 			try {
 				promocion = (Promocion) Class.forName("promocion."+promocionTipo).newInstance();
@@ -42,14 +44,10 @@ public class Lector {
 				e.printStackTrace();
 			}
 			
-			PaquetePromocional paquete = new PaquetePromocional(id, nombre, tiempo, descuento, atracciones, promocion);
+			PaquetePromocional paquete = new PaquetePromocional(id, nombre, tiempo, descuento, atracciones, promocion, tipo);
 			promociones.add(paquete);
-			
 		}
-		
 		return promociones;
-		
-
 	}
 	
 	
@@ -68,8 +66,9 @@ public class Lector {
 			double tiempo = dataAtraccion.get("tiempo").getAsDouble();
 			int cupo = dataAtraccion.get("cupo").getAsInt();
 			String nombre = dataAtraccion.get("nombre").getAsString();
+			String tipo = dataAtraccion.get("tipo").getAsString();
 			
-			Atraccion atraccion = new Atraccion(id,costo,tiempo,cupo,nombre);
+			Atraccion atraccion = new Atraccion(id,costo,tiempo,cupo,nombre, tipo);
 			atracciones.add(atraccion);
 		}
 		

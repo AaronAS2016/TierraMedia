@@ -1,23 +1,26 @@
 [
     {
-        "id": 1,
+        "id": 9,
         "nombre": "Pack Aventura",
         "atracciones": [1, 4, 8],
         "tipo_promocion" : "PromocionFija",
-        "descuento": 20
+        "descuento": 20,
+        "tipo" : "aventuura"
     },
     {
-        "id": 2,
+        "id": 10,
         "nombre": "Pack Degustacion",
         "atracciones": [ 3 , 6],
         "tipo_promocion" : "PromocionAxB",
-        "descuento": 3
+        "descuento": 3,
+        "tipo" : "degustacion"
     },
     {
-        "id": 3,
+        "id": 11,
         "nombre": "Pack Paisaje",
         "atracciones": [ 2, 5, 7],
         "tipo_promocion": "PromocionAbsoluta",
-        "descuento": 15
+        "descuento": 15,
+        "tipo" : "paisaje"
     }
  ]

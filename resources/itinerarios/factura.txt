@@ -1,0 +1,19 @@
+=================== FACTURA ======================
+Id de usuario:3
+Nombre:Sam.
+Tiempo Disponible:8.0hs.
+Tipo preferido:Degustacion
+Presupuesto Disponible:1$
+
+=================== COMPRAS ======================
+
+Paquete:Pack Degustacion
+Tiempo:7.5hs.
+Precio:35$
+
+=================== RESUMEN ======================
+Precio total:35$
+Tiempo total:7.5hs.
+
+
+Gracias por su compra, Sam. :D 
