@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import promocion.PaquetePromocional;
 import escritor.Escritor;
 import atraccion.Atraccion;
 import lector.Lector;
@@ -16,8 +15,8 @@ public class RecomendadorDeAtracciones {
 
 	private Turista turista;
 	private ArrayList<Producto> productosAceptados;
-	private ArrayList<Atraccion> atracciones;
-	private ArrayList<PaquetePromocional> paquetesPromocionales;
+	private ArrayList<Producto> atracciones;
+	private ArrayList<Producto> paquetesPromocionales;
 	private ArrayList<Producto> productosRecomendados;
 
 	
@@ -45,6 +44,15 @@ public class RecomendadorDeAtracciones {
 	
 	
 	
+	/** 
+	 * 
+	 * <p>post: Devuelve la información de los productos sugeridos para el usuario</p>
+	 * 
+	 * @return ArrayList<Producto> lista con los productos recomendados
+	 * 
+	 * */
+	
+	
 	public ArrayList<Producto> recomendar(){
 		
 		
@@ -68,6 +76,14 @@ public class RecomendadorDeAtracciones {
 	
 	
 	
+	/**
+	 * 
+	 * 
+	 * <p> post: Se acepta el producto y se agrega a la cuenta, eliminando el producto aceptado de las posibles sugerencias </p>
+	 * @param productoAceptado Producto que desea aceptar el usuario
+	 * 
+	 * */
+	
 	public void aceptarProducto(Producto productoAceptado){
 		
 		boolean comproProducto = verificarCompra(productoAceptado.obtenerId());
@@ -88,6 +104,10 @@ public class RecomendadorDeAtracciones {
 		
 	}
 	
+	/**
+	 * <p>post: Genera la factura con todos los productos aceptados del usuario </p>
+	 * */
+	
 	public void generarFactura() {
 		Escritor escritor = new Escritor(turista, productosAceptados);
 		try {
@@ -100,36 +120,37 @@ public class RecomendadorDeAtracciones {
 	
 	
 	
+	/**
+	 * 
+	 * <p>post: Calcula las atracciones sugeridads para el usuario</p>
+	 * 
+	 * @param verificarTIpo Si es true, se ignorarar la verificacion de tipo a la hora de ver si un producto es recomendado para el turista
+	 * */
 	private void calcularAtraccionesRecomendadas(boolean verificarTIpo) {
-		ArrayList<PaquetePromocional> paquetes = obtenerPaquetesPromocionalesRecomendadas(verificarTIpo);
-		ArrayList<Atraccion> atracciones = obtenerAtraccionesRecomendadas(verificarTIpo);
-		agregarPaquetes(paquetes);
-		agregarAtracciones(atracciones);
+		ArrayList<Producto> paquetesRecomendados = obtenerProductosRecomendadas(paquetesPromocionales,verificarTIpo);
+		ArrayList<Producto> atraccionesRecomendadas = obtenerProductosRecomendadas(atracciones,verificarTIpo);
+		agregarProductos(OrdenamientoDeAtracciones.ordenar(paquetesRecomendados));
+		agregarProductos(OrdenamientoDeAtracciones.ordenar(atraccionesRecomendadas));
 	}
 
 	
-	private void agregarPaquetes(ArrayList<PaquetePromocional> paquetes) {
-		Iterator<PaquetePromocional> iteradorProducto = paquetes.iterator();
-		while(iteradorProducto.hasNext()){
-			this.productosRecomendados.add(iteradorProducto.next());
-		}
-	}
-
-
-
-	private void agregarAtracciones(ArrayList<Atraccion> producosParaAgregar){
-		Iterator<Atraccion> iteradorProducto = producosParaAgregar.iterator();
+	
+	private void agregarProductos(ArrayList<Producto> paquetes) {
+		Iterator<Producto> iteradorProducto = paquetes.iterator();
 		while(iteradorProducto.hasNext()){
 			this.productosRecomendados.add(iteradorProducto.next());
 		}
 	}
 	
+
+
 	
-	private ArrayList<PaquetePromocional> obtenerPaquetesPromocionalesRecomendadas(boolean verificarTIpo){
-		ArrayList<PaquetePromocional> paquetesSugeridos = new ArrayList<PaquetePromocional>();
-		Iterator<PaquetePromocional> iteradorPaquetes = paquetesPromocionales.iterator();
+	
+	private ArrayList<Producto> obtenerProductosRecomendadas(ArrayList<Producto> listaDeProductos, boolean verificarTIpo){
+		ArrayList<Producto> paquetesSugeridos = new ArrayList<Producto>();
+		Iterator<Producto> iteradorPaquetes = listaDeProductos.iterator();
 		while (iteradorPaquetes.hasNext()) {
-			PaquetePromocional paquete = iteradorPaquetes.next();
+			Producto paquete = iteradorPaquetes.next();
 			boolean leAlcanza = (paquete.obtenerCosto() <= turista.obtenerPresupuesto());
 			boolean tieneTiempo = (paquete.obtenerDuracion() < turista.obtenerTiempoDisponible());
 			boolean esDeSuTipo = paquete.obtenerTipo().equals(turista.obtenerPreferencia());
@@ -147,34 +168,7 @@ public class RecomendadorDeAtracciones {
 		}
 		return paquetesSugeridos;
 	}
-
-	private ArrayList<Atraccion> obtenerAtraccionesRecomendadas(boolean verificarTIpo) {
-		ArrayList<Atraccion> atraccionesSugeridas = new ArrayList<Atraccion>();
-		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
-		while (iteradorAtracciones.hasNext()) {
-			Atraccion atraccion = iteradorAtracciones.next();
-			boolean leAlcanza = (atraccion.obtenerCosto() <= turista.obtenerPresupuesto());
-			boolean hayCupo = (atraccion.obtenerCuposDisponbiles() > 0);
-			boolean tieneTiempo = (atraccion.obtenerDuracion() < turista.obtenerTiempoDisponible());
-			boolean esDeSuTipo = atraccion.obtenerTipo().equals(turista.obtenerPreferencia());
-			
-			System.out.println("--------------------------");
-			System.out.println("Atraccion:"+ atraccion.obtenerNombre());
-			System.out.println("leAlcanza:" + leAlcanza + " / Dinero atraccion = " + atraccion.obtenerCosto() + " - Dinero turista:" + turista.obtenerPresupuesto());
-			System.out.println("hayCupo:" + hayCupo);
-			System.out.println("tieneTiempo:" + tieneTiempo + " / Tiempo atraccion = " + atraccion.obtenerDuracion() + " - Tiempo turista:" + turista.obtenerTiempoDisponible());
-			System.out.println("esDeSuTipo:" + esDeSuTipo + " / Tipo atraccion = " + atraccion.obtenerTipo() + " - Tipo turista:" + turista.obtenerPreferencia() );
-			System.out.println("verificarTipo:" + verificarTIpo);
-			System.out.println("--------------------------" );
-			
-			if (leAlcanza && hayCupo && tieneTiempo && (esDeSuTipo || verificarTIpo)) {
-					   atraccionesSugeridas.add(atraccion);
-			}
-		}
-		return OrdenamientoDeAtracciones.ordenar(atraccionesSugeridas);
-	}
 	
-
 	private void removerProductoDeSugerencias(int id) {
 		boolean seEncontro = false;
 		for(int i = 0; i < this.productosRecomendados.size() && !seEncontro; i++){
@@ -187,7 +181,7 @@ public class RecomendadorDeAtracciones {
 	
 
 	private boolean verificarCompra(int obtenerId) {
-		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
+		Iterator<Producto> iteradorAtracciones = atracciones.iterator();
 		boolean seEncontro = false;
 		while(iteradorAtracciones.hasNext()){
 			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);

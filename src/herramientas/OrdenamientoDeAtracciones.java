@@ -1,14 +1,13 @@
 package herramientas;
 
 import java.util.ArrayList;
-
-import atraccion.Atraccion;
+import tierramedia.Producto;
 
 public class OrdenamientoDeAtracciones {
 	
-	public static ArrayList<Atraccion> ordenar(ArrayList<Atraccion> atraccionesAOrdenar) {
+	public static ArrayList<Producto> ordenar(ArrayList<Producto> atraccionesAOrdenar) {
 
-		ArrayList<Atraccion> atraccionesOrdenadas;
+		ArrayList<Producto> atraccionesOrdenadas;
 		
 		int largo = atraccionesAOrdenar.size();
 
@@ -16,12 +15,12 @@ public class OrdenamientoDeAtracciones {
 			atraccionesOrdenadas = atraccionesAOrdenar;
 		} else {
 
-			ArrayList<Atraccion> primerMitad = new ArrayList<Atraccion>();
+			ArrayList<Producto> primerMitad = new ArrayList<Producto>();
 			for (int i = 0; i < (largo / 2 ); i++) {
 				primerMitad.add(atraccionesAOrdenar.get(i));
 			}
 
-			ArrayList<Atraccion> segundaMitad = new ArrayList<Atraccion>();
+			ArrayList<Producto> segundaMitad = new ArrayList<Producto>();
 			for (int i = 0; i < largo - (largo / 2); i++) {
 				segundaMitad.add(atraccionesAOrdenar.get(i + largo / 2));
 			}
@@ -32,9 +31,9 @@ public class OrdenamientoDeAtracciones {
 		return atraccionesOrdenadas;
 	}
 	
-	public static ArrayList<Atraccion> mezclarAtracciones(ArrayList<Atraccion>primerMitad, ArrayList<Atraccion> segundaMitad) {
+	public static ArrayList<Producto> mezclarAtracciones(ArrayList<Producto>primerMitad, ArrayList<Producto> segundaMitad) {
 
-		ArrayList<Atraccion> mezcla = new ArrayList<Atraccion>(); 
+		ArrayList<Producto> mezcla = new ArrayList<Producto>(); 
 		
 		int iPrimerMitad = 0;
 		int iSegundaMitad = 0;

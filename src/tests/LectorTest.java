@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import lector.Lector;
-import promocion.PaquetePromocional;
+import tierramedia.Producto;
 
 import org.junit.Test;
 
@@ -35,7 +35,7 @@ public class LectorTest {
 	@Test
 	public void leerPreferenciaConTuristaDeId2() {
 		Turista turista = Lector.buscarTurista(2);
-		assertEquals("Paisajes", turista.obtenerPreferencia());
+		assertEquals("paisajes", turista.obtenerPreferencia());
 	}
 	
 	@Test(expected = Error.class)
@@ -66,51 +66,45 @@ public class LectorTest {
 	@Test
 	public void leerPreferenciaConTuristaDeId3() {
 		Turista turista = Lector.buscarTurista(3);
-		assertEquals("Degustacion", turista.obtenerPreferencia());
+		assertEquals("degustacion", turista.obtenerPreferencia());
 	}
 	
 	@Test
 	public void leerAtraccionConId1() {
-		ArrayList<Atraccion> atracciones = Lector.obtenerAtracciones();
-		Atraccion atraccion = atracciones.get(0);
+		ArrayList<Producto> atracciones = Lector.obtenerAtracciones();
+		Atraccion atraccion = (Atraccion) atracciones.get(0);
 		assertEquals("Moria", atraccion.obtenerNombre());
 	}
 	
 	
 	@Test
 	public void leerAtraccionConId2Costo() {
-		ArrayList<Atraccion> atracciones = Lector.obtenerAtracciones();
-		Atraccion atraccion = atracciones.get(1);
+		ArrayList<Producto> atracciones = Lector.obtenerAtracciones();
+		Atraccion atraccion = (Atraccion) atracciones.get(1);
 		assertEquals(5, atraccion.obtenerCosto(), 0.1);
 	}
 
 	
 	@Test
 	public void leerAtraccionConId5TIempoDisponible() {
-		ArrayList<Atraccion> atracciones = Lector.obtenerAtracciones();
-		Atraccion atraccion = atracciones.get(4);
+		ArrayList<Producto> atracciones = Lector.obtenerAtracciones();
+		Atraccion atraccion = (Atraccion) atracciones.get(4);
 		assertEquals("Abismo de Helm", atraccion.obtenerNombre());
 	}
 	
 	
 	@Test
 	public void obtenerNombreDeAtraccionConId1() {
-		Atraccion atraccion = Lector.obtenerAtraccion(1);
+		Producto atraccion = Lector.obtenerAtraccion(1);
 		assertEquals("Moria", atraccion.obtenerNombre());
 	}
 	
 	@Test
 	public void obtenerDuracionDeAtraccionConId2() {
-		Atraccion atraccion = Lector.obtenerAtraccion(2);
+		Producto atraccion = Lector.obtenerAtraccion(2);
 		assertEquals(2.5, atraccion.obtenerDuracion(), 0.1);
 	}
-	
-	@Test
-	public void obtenerCuposDeAtraccionConId2() {
-		Atraccion atraccion = Lector.obtenerAtraccion(3);
-		assertEquals(150, atraccion.obtenerCuposDisponbiles());
-	}
-	
+		
 	@Test(expected = Error.class)
 	public void obtenerAtraccionConId0() {
 		Lector.obtenerAtraccion(0);
@@ -118,13 +112,13 @@ public class LectorTest {
 	
 	@Test
 	public void obtenerNombrePaquetePromocionalConId9() {
-		ArrayList<PaquetePromocional> paquetes = Lector.obtenerPaquetes();
+		ArrayList<Producto> paquetes = Lector.obtenerPaquetes();
 		assertEquals("Pack Aventura", paquetes.get(0).obtenerNombre());
 	}
 	
 	@Test
 	public void obtenerNombrePaquetePromocionalConId10() {
-		ArrayList<PaquetePromocional> paquetes = Lector.obtenerPaquetes();
+		ArrayList<Producto> paquetes = Lector.obtenerPaquetes();
 		assertEquals("Pack Degustacion", paquetes.get(1).obtenerNombre());
 	}
 

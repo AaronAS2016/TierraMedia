@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import atraccion.Atraccion;
 
-public abstract class Producto {
+public abstract class Producto implements Comparable<Producto>{
 	
 	protected int id;
 	protected int costo;
@@ -43,5 +43,19 @@ public abstract class Producto {
 	
 	public String obtenerTipoDeProducto() {
 		return this.tipoProducto;
+	}
+	
+	
+	@Override
+	public int compareTo(Producto productoAComparar) {
+		int orden = -1;
+		boolean esMayor = (this.obtenerCosto() > productoAComparar
+				.obtenerCosto());
+		if (esMayor) {
+			orden = 1;
+		} else if (this.obtenerCosto() == productoAComparar.obtenerCosto()) {
+			orden = 0;
+		}
+		return orden;
 	}
 }

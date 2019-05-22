@@ -8,6 +8,8 @@ import atraccion.Atraccion;
 import herramientas.Calculadora;
 import promocion.PaquetePromocional;
 import promocion.Promocion;
+import tierramedia.Producto;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,10 +21,10 @@ public class Lector {
 
 	
 	
-	public static ArrayList<PaquetePromocional> obtenerPaquetes(){
+	public static ArrayList<Producto> obtenerPaquetes(){
 		
 		JsonArray listaDePaquetesPromocionales = leerItinerario("resources/itinerarios/promociones.txt").getAsJsonArray();
-		ArrayList<PaquetePromocional> promociones = new ArrayList<PaquetePromocional>();
+		ArrayList<Producto> promociones = new ArrayList<Producto>();
 
 		for (int i = 0; i < listaDePaquetesPromocionales.size(); i++) {
 			JsonObject dataPromocion = listaDePaquetesPromocionales.get(i).getAsJsonObject();
@@ -54,10 +56,10 @@ public class Lector {
 
 
 
-	public static ArrayList<Atraccion> obtenerAtracciones() {
+	public static ArrayList<Producto> obtenerAtracciones() {
 		
 		JsonArray listaDeAtracciones = leerItinerario("resources/itinerarios/atracciones.txt").getAsJsonArray();
-		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
+		ArrayList<Producto> atracciones = new ArrayList<Producto>();
 
 		for (int i = 0; i < listaDeAtracciones.size(); i++) {
 			JsonObject dataAtraccion =  listaDeAtracciones.get(i).getAsJsonObject();
@@ -79,18 +81,18 @@ public class Lector {
 		
 		Atraccion atraccionBuscada = null;
 		
-		ArrayList<Atraccion> listaDeAtracciones = obtenerAtracciones();
-		Iterator<Atraccion> iteradorAtracciones = listaDeAtracciones.iterator();
+		ArrayList<Producto> listaDeAtracciones = obtenerAtracciones();
+		Iterator<Producto> iteradorAtracciones = listaDeAtracciones.iterator();
 		
 		boolean seEncontro = false;
 		
 		while(iteradorAtracciones.hasNext() && !seEncontro){
 			
-			Atraccion atraccion = iteradorAtracciones.next();
+			Producto atraccion = iteradorAtracciones.next();
 			seEncontro = (idAtraccion == atraccion.obtenerId());
 			
 			if(seEncontro) {
-				atraccionBuscada = atraccion;
+				atraccionBuscada = (Atraccion) atraccion;
 			}
 		}
 		

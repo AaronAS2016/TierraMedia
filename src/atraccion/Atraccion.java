@@ -2,7 +2,7 @@ package atraccion;
 
 import tierramedia.Producto;
 
-public class Atraccion extends Producto implements Comparable<Atraccion> {
+public class Atraccion extends Producto{
 
 	private int cupo;
 	
@@ -20,17 +20,6 @@ public class Atraccion extends Producto implements Comparable<Atraccion> {
 		return cupo;
 	}
 
-	@Override
-	public int compareTo(Atraccion atraccionAComparar) {
-		int orden = -1;
-		boolean esMayor = (this.obtenerCosto() > atraccionAComparar
-				.obtenerCosto());
-		if (esMayor) {
-			orden = 1;
-		} else if (this.obtenerCosto() == atraccionAComparar.obtenerCosto()) {
-			orden = 0;
-		}
-		return orden;
-	}
+
 
 }
