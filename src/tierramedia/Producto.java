@@ -1,5 +1,9 @@
 package tierramedia;
 
+import java.util.ArrayList;
+
+import atraccion.Atraccion;
+
 public abstract class Producto {
 	
 	protected int id;
@@ -7,6 +11,8 @@ public abstract class Producto {
 	protected double duracion;
 	protected String nombre;
 	protected String tipo;
+	protected ArrayList<Atraccion> atracciones;
+	protected String tipoProducto;
 	
 	public int obtenerId() {
 		return this.id;
@@ -29,5 +35,13 @@ public abstract class Producto {
 	
 	public String obtenerTipo(){
 		return this.tipo;
+	}
+	
+	public ArrayList<Atraccion> obtenerAtracciones(){
+		return this.atracciones;
+	}
+	
+	public String obtenerTipoDeProducto() {
+		return this.tipoProducto;
 	}
 }

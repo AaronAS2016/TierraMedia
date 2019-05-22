@@ -1,19 +1,19 @@
 =================== FACTURA ======================
-Id de usuario:3
-Nombre:Sam.
+Id de usuario:5
+Nombre:Aragorn.
 Tiempo Disponible:8.0hs.
 Tipo preferido:Degustacion
-Presupuesto Disponible:1$
+Presupuesto Disponible:27$
 
 =================== COMPRAS ======================
 
-Paquete:Pack Degustacion
-Tiempo:7.5hs.
-Precio:35$
+Paquete:La Comarca
+Tiempo:6.5hs.
+Precio:3$
 
 =================== RESUMEN ======================
-Precio total:35$
-Tiempo total:7.5hs.
+Precio total:3$
+Tiempo total:6.5hs.
 
 
-Gracias por su compra, Sam. :D 
+Gracias por su compra, Aragorn. :D 

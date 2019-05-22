@@ -18,7 +18,7 @@ public class RecomendadorDeAtracciones {
 	private ArrayList<Producto> productosAceptados;
 	private ArrayList<Atraccion> atracciones;
 	private ArrayList<PaquetePromocional> paquetesPromocionales;
-	private ArrayList<Producto> productosRecomendados = null;
+	private ArrayList<Producto> productosRecomendados;
 
 	public RecomendadorDeAtracciones(int idTurista) {
 		if (idTurista < 0) {
@@ -28,23 +28,31 @@ public class RecomendadorDeAtracciones {
 		atracciones = Lector.obtenerAtracciones();
 		paquetesPromocionales = Lector.obtenerPaquetes();
 		productosAceptados = new ArrayList<Producto>();
+		productosRecomendados = new ArrayList<Producto>();
 	}
 	
 	
 	
 	public ArrayList<Producto> recomendar(){
-		if(productosRecomendados == null || productosRecomendados.size() == 0){
-			productosRecomendados = new ArrayList<Producto>();
-			ArrayList<PaquetePromocional> paquetes = obtenerPaquetesPromocionalesRecomendadas();
-			ArrayList<Atraccion> atracciones = obtenerAtraccionesRecomendadas();
-			agregarPaquetes(paquetes);
-			agregarAtracciones(atracciones);
-		}
+		
+		
+		boolean verificarTIpo = false;
 		if(productosRecomendados.size() == 0){
-			throw new Error("Lo lamentamos, ninguna atraccion en base a tus preferencias");
+			calcularAtraccionesRecomendadas(verificarTIpo);
 		}
+		verificarTIpo = (productosRecomendados.size() == 0);
+		
+		if(verificarTIpo){
+			calcularAtraccionesRecomendadas(verificarTIpo);
+		}
+		
+		if(productosRecomendados.size() == 0){
+			throw new Error("No se encontro ninguna atraccion de su tipo");
+		}
+		
 		return this.productosRecomendados;
 	}
+	
 	
 	
 	public void aceptarProducto(Producto productoAceptado){
@@ -56,7 +64,15 @@ public class RecomendadorDeAtracciones {
 		}
 		productosAceptados.add(productoAceptado);
 		turista.cobrarAtraccion(productoAceptado.obtenerCosto(), productoAceptado.obtenerDuracion());
-		removerProductoDeSugerencias(productoAceptado.obtenerId());
+		if(productoAceptado.obtenerTipoDeProducto().equals("Paquete")){
+			ArrayList<Atraccion> atraccionesDelPaquete = productoAceptado.obtenerAtracciones();
+			for(int i = 0; i < atraccionesDelPaquete.size(); i++){
+				removerProductoDeSugerencias(atraccionesDelPaquete.get(i).obtenerId());
+			}
+		}else {
+			removerProductoDeSugerencias(productoAceptado.obtenerId());
+		}
+		
 	}
 	
 	public void generarFactura() {
@@ -66,6 +82,16 @@ public class RecomendadorDeAtracciones {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		actualizarItinerarios();
+	}
+	
+	
+	
+	private void calcularAtraccionesRecomendadas(boolean verificarTIpo) {
+		ArrayList<PaquetePromocional> paquetes = obtenerPaquetesPromocionalesRecomendadas(verificarTIpo);
+		ArrayList<Atraccion> atracciones = obtenerAtraccionesRecomendadas(verificarTIpo);
+		agregarPaquetes(paquetes);
+		agregarAtracciones(atracciones);
 	}
 
 	
@@ -86,7 +112,7 @@ public class RecomendadorDeAtracciones {
 	}
 	
 	
-	private ArrayList<PaquetePromocional> obtenerPaquetesPromocionalesRecomendadas(){
+	private ArrayList<PaquetePromocional> obtenerPaquetesPromocionalesRecomendadas(boolean verificarTIpo){
 		ArrayList<PaquetePromocional> paquetesSugeridos = new ArrayList<PaquetePromocional>();
 		Iterator<PaquetePromocional> iteradorPaquetes = paquetesPromocionales.iterator();
 		while (iteradorPaquetes.hasNext()) {
@@ -101,16 +127,14 @@ public class RecomendadorDeAtracciones {
 			System.out.println("esDeSuTipo:" + esDeSuTipo + " / Tipo atraccion = " + paquete.obtenerTipo() + " - Tipo turista:" + turista.obtenerPreferencia() );
 			System.out.println("--------------------------");
 			
-			if (	   paquete.obtenerCosto() <= turista.obtenerPresupuesto()
-					&& paquete.obtenerDuracion() < turista.obtenerTiempoDisponible()
-					&& paquete.obtenerTipo().equals(turista.obtenerPreferencia())) {
+			if (leAlcanza && tieneTiempo && (esDeSuTipo || verificarTIpo)) { 
 				paquetesSugeridos.add(paquete);
 			}
 		}
 		return paquetesSugeridos;
 	}
 
-	private ArrayList<Atraccion> obtenerAtraccionesRecomendadas() {
+	private ArrayList<Atraccion> obtenerAtraccionesRecomendadas(boolean verificarTIpo) {
 		ArrayList<Atraccion> atraccionesSugeridas = new ArrayList<Atraccion>();
 		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
 		while (iteradorAtracciones.hasNext()) {
@@ -128,10 +152,7 @@ public class RecomendadorDeAtracciones {
 			System.out.println("esDeSuTipo:" + esDeSuTipo + " / Tipo atraccion = " + atraccion.obtenerTipo() + " - Tipo turista:" + turista.obtenerPreferencia() );
 			System.out.println("--------------------------" );
 			
-			if (	   atraccion.obtenerCosto() <= turista.obtenerPresupuesto()
-					&& atraccion.obtenerCuposDisponbiles() > 0
-					&& atraccion.obtenerDuracion() < turista.obtenerTiempoDisponible()
-					&& atraccion.obtenerTipo().equals(turista.obtenerPreferencia())) {
+			if (leAlcanza && hayCupo && tieneTiempo && (esDeSuTipo || verificarTIpo)) {
 					   atraccionesSugeridas.add(atraccion);
 			}
 		}
@@ -148,8 +169,7 @@ public class RecomendadorDeAtracciones {
 			}
 		}
 	}
-
-
+	
 
 	private boolean verificarCompra(int obtenerId) {
 		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
@@ -158,6 +178,10 @@ public class RecomendadorDeAtracciones {
 			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
 		}
 		return seEncontro;
+	}
+	
+	private void actualizarItinerarios() {
+		//TODO: Completar metodo
 	}
 
 
