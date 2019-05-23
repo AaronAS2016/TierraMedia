@@ -138,7 +138,10 @@ public class RecomendadorDeAtracciones {
 	private void agregarProductos(ArrayList<Producto> paquetes) {
 		Iterator<Producto> iteradorProducto = paquetes.iterator();
 		while(iteradorProducto.hasNext()){
-			this.productosRecomendados.add(iteradorProducto.next());
+			Producto producto = iteradorProducto.next();
+			if(!verificarSugerencia(producto.id)){				
+				this.productosRecomendados.add(producto);
+			}
 		}
 	}
 	
@@ -182,6 +185,15 @@ public class RecomendadorDeAtracciones {
 
 	private boolean verificarCompra(int obtenerId) {
 		Iterator<Producto> iteradorAtracciones = atracciones.iterator();
+		boolean seEncontro = false;
+		while(iteradorAtracciones.hasNext()){
+			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
+		}
+		return seEncontro;
+	}
+	
+	private boolean verificarSugerencia(int obtenerId) {
+		Iterator<Producto> iteradorAtracciones = productosRecomendados.iterator();
 		boolean seEncontro = false;
 		while(iteradorAtracciones.hasNext()){
 			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
