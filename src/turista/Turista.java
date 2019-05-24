@@ -23,14 +23,13 @@ public class Turista {
 
     public void cobrarAtraccion(int costo, double tiempo) {
     	if(costo > presupuesto){
-    		throw new Error("Presupuesto no suficiente para cobrar esta atracción");
+    		throw new Error("Presupuesto no suficiente para cobrar esta atracci�n");
     	}
         this.presupuesto -= costo;
-        
-        if ( tiempo > tiempoDisponible ){
-        	throw new Error ("Tiempo insuficiente para asistir a esta atracción");
-        }
-        this.tiempoDisponible -= tiempo;
+    }
+
+    public void descontarTiempo(double tiempoDeAtraccion) {
+        this.tiempoDisponible -= tiempoDeAtraccion;
     }
 
     public String obtenerPreferencia() {
