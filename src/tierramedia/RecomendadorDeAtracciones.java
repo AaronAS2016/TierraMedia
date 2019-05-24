@@ -41,7 +41,7 @@ public class RecomendadorDeAtracciones {
 		atracciones = Lector.obtenerAtracciones();
 		paquetesPromocionales = Lector.obtenerPaquetes();
 		productosAceptados = new LinkedList<Producto>();
-		productosRecomendados = new LinkedList<Producto>();
+		productosRecomendados = new ArrayList<Producto>();
 	}
 	
 	
@@ -146,10 +146,6 @@ public class RecomendadorDeAtracciones {
 		}
 	}
 	
-
-
-	
-	
 	private List<Producto> obtenerProductosRecomendadas(List<Producto> listaDeProductos, boolean verificarTIpo){
 		List<Producto> paquetesSugeridos = new ArrayList<Producto>();
 		Iterator<Producto> iteradorPaquetes = listaDeProductos.iterator();
@@ -184,11 +180,11 @@ public class RecomendadorDeAtracciones {
 	}
 	
 
-	private boolean verificarCompra(List<Producto> producto, int obtenerId) {
+	private boolean verificarCompra(List<Producto> producto, int idBuscado) {
 		Iterator<Producto> iteradorProducto = producto.iterator();
 		boolean seEncontro = false;
 		while(iteradorProducto.hasNext() && !seEncontro){
-			seEncontro = (iteradorProducto.next().obtenerId() == obtenerId);
+			seEncontro = (iteradorProducto.next().obtenerId() == idBuscado);
 		}
 		return seEncontro;
 	}
