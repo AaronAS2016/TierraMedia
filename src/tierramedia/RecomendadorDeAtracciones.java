@@ -56,19 +56,18 @@ public class RecomendadorDeAtracciones {
 	
 	
 	public List<Producto> recomendar(){
-		
+		System.out.println("---------- RECOMENDADOR DE ATRACCIONES ----------------");
 		
 		boolean verificarTIpo = false;
-		if(productosRecomendados.size() == 0){
-			 
-			calcularAtraccionesRecomendadas(verificarTIpo);
-			verificarTIpo = (productosRecomendados.size() >= 0);
-		}
+
+		calcularAtraccionesRecomendadas(verificarTIpo);
+		verificarTIpo = (productosRecomendados.size() >= 0);
 		
 		if(verificarTIpo){
 			calcularAtraccionesRecomendadas(verificarTIpo);
 		}
 		
+		System.out.println("EL TAMAÑO DEL ARRAY  DE LAS RECOMENDACIONES: " + productosRecomendados.size());
 		if(productosRecomendados.size() == 0){
 			throw new Error("No se encontro ninguna atraccion de su tipo");
 		}
@@ -93,16 +92,21 @@ public class RecomendadorDeAtracciones {
 		if(comproProducto){
 			throw new Error("No puede comprar un producto que ya compro");
 		}
+		
 		productosAceptados.add(productoAceptado);
-		turista.cobrarAtraccion(productoAceptado.obtenerCosto(), productoAceptado.obtenerDuracion());
+		
+		this.turista.cobrarAtraccion(productoAceptado.obtenerCosto(), productoAceptado.obtenerDuracion());
+		
 		if(productoAceptado.obtenerTipoDeProducto().equals("Paquete")){
 			List<Atraccion> atraccionesDelPaquete = productoAceptado.obtenerAtracciones();
-			for(int i = 0; i < atraccionesDelPaquete.size(); i++){
-				removerProductoDeSugerencias(atraccionesDelPaquete.get(i).obtenerId());
+			Iterator<Atraccion> itAtracciones = atraccionesDelPaquete.iterator();
+			while(itAtracciones.hasNext()) {
+				Producto atraccion = itAtracciones.next();
+				removerProductoDeSugerencias(atraccion.obtenerId());
 			}
-		}else {
-			removerProductoDeSugerencias(productoAceptado.obtenerId());
 		}
+		removerProductoDeSugerencias(productoAceptado.obtenerId());
+		
 		
 	}
 	
@@ -164,6 +168,8 @@ public class RecomendadorDeAtracciones {
 			
 			if (leAlcanza && tieneTiempo && (esDeSuTipo || verificarTIpo)) { 
 				paquetesSugeridos.add(paquete);
+			}else {
+				removerProductoDeSugerencias(paquete.obtenerId());
 			}
 		}
 		return paquetesSugeridos;
@@ -171,10 +177,12 @@ public class RecomendadorDeAtracciones {
 	
 	private void removerProductoDeSugerencias(int id) {
 		boolean seEncontro = false;
-		for(int i = 0; i < this.productosRecomendados.size() && !seEncontro; i++){
-			seEncontro = (productosRecomendados.get(i).obtenerId() == id);
+		Iterator<Producto> itProducto = this.productosRecomendados.iterator();
+		while(itProducto.hasNext() && !seEncontro) {
+			Producto producto = itProducto.next();
+			seEncontro = (producto.obtenerId() == id);
 			if(seEncontro){
-				productosRecomendados.remove(i);
+				productosRecomendados.remove(producto);
 			}
 		}
 	}
