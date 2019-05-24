@@ -1,7 +1,7 @@
 =================== FACTURA ======================
 Id de usuario:5
 Nombre:Aragorn.
-Tiempo Disponible:8.0hs.
+Tiempo Disponible:1.5hs.
 Tipo preferido:Degustacion
 Presupuesto Disponible:27$
 
