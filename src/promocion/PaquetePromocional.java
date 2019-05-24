@@ -1,7 +1,6 @@
 package promocion;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import tierramedia.Producto;
 import atraccion.Atraccion;
 
@@ -11,7 +10,7 @@ public class PaquetePromocional extends Producto {
 	private Promocion promocion;
 
 	public PaquetePromocional(int id, String nombre, double duracion, int descuento,
-			ArrayList<Atraccion> atracciones, Promocion promocion, String tipo) {
+			List<Atraccion> atracciones, Promocion promocion, String tipo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.duracion = duracion;

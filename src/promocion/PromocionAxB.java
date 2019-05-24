@@ -1,17 +1,17 @@
 package promocion;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import atraccion.Atraccion;
 
 public class PromocionAxB implements Promocion {
 
 	@Override
-	public int calcularPromocion(ArrayList<Atraccion> atracciones, int descuento) {
+	public int calcularPromocion(List<Atraccion> atracciones, int descuento) {
 		return sumarPreciosDeAtracciones(atracciones) - buscarPrecioDeAtraccionGratis(atracciones, descuento);
 	}
 
-	private int sumarPreciosDeAtracciones(ArrayList<Atraccion> atracciones) {
+	private int sumarPreciosDeAtracciones(List<Atraccion> atracciones) {
 
 		Atraccion atraccion;
 		int precioAtracciones = 0;
@@ -22,7 +22,7 @@ public class PromocionAxB implements Promocion {
 		return precioAtracciones;
 	}
 
-	private int buscarPrecioDeAtraccionGratis(ArrayList<Atraccion> atracciones, int atraccionGratis) {
+	private int buscarPrecioDeAtraccionGratis(List<Atraccion> atracciones, int atraccionGratis) {
 
 		Atraccion atraccion;
 		int precioAtraccion = 0;

@@ -1,17 +1,17 @@
 package promocion;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import atraccion.Atraccion;
 
 public class PromocionAbsoluta implements Promocion {
 
 	@Override
-	public int calcularPromocion(ArrayList<Atraccion> atracciones, int descuento) {
+	public int calcularPromocion(List<Atraccion> atracciones, int descuento) {
 		return sumarPreciosDeAtracciones(atracciones) - descuento;
 	}
 
-	private int sumarPreciosDeAtracciones(ArrayList<Atraccion> atracciones) {
+	private int sumarPreciosDeAtracciones(List<Atraccion> atracciones) {
 
 		int precioAtracciones = 0;
 		for (int i = 0; i < atracciones.size(); i++) {

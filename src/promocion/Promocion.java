@@ -1,9 +1,8 @@
 package promocion;
-
-import java.util.ArrayList;
+import java.util.List;
 
 import atraccion.Atraccion;
 
 public interface Promocion {
-	public int calcularPromocion(ArrayList<Atraccion> atracciones, int descuento);
+	public int calcularPromocion(List<Atraccion> atracciones, int descuento);
 }

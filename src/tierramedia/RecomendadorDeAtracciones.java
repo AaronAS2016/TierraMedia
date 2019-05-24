@@ -5,6 +5,8 @@ import herramientas.OrdenamientoDeAtracciones;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import escritor.Escritor;
 import atraccion.Atraccion;
@@ -14,10 +16,10 @@ import turista.Turista;
 public class RecomendadorDeAtracciones {
 
 	private Turista turista;
-	private ArrayList<Producto> productosAceptados;
-	private ArrayList<Producto> atracciones;
-	private ArrayList<Producto> paquetesPromocionales;
-	private ArrayList<Producto> productosRecomendados;
+	private List<Producto> productosAceptados;
+	private List<Producto> atracciones;
+	private List<Producto> paquetesPromocionales;
+	private List<Producto> productosRecomendados;
 
 	
 	/** 
@@ -38,8 +40,8 @@ public class RecomendadorDeAtracciones {
 		turista = Lector.buscarTurista(idTurista);
 		atracciones = Lector.obtenerAtracciones();
 		paquetesPromocionales = Lector.obtenerPaquetes();
-		productosAceptados = new ArrayList<Producto>();
-		productosRecomendados = new ArrayList<Producto>();
+		productosAceptados = new LinkedList<Producto>();
+		productosRecomendados = new LinkedList<Producto>();
 	}
 	
 	
@@ -53,7 +55,7 @@ public class RecomendadorDeAtracciones {
 	 * */
 	
 	
-	public ArrayList<Producto> recomendar(){
+	public List<Producto> recomendar(){
 		
 		
 		boolean verificarTIpo = false;
@@ -94,7 +96,7 @@ public class RecomendadorDeAtracciones {
 		productosAceptados.add(productoAceptado);
 		turista.cobrarAtraccion(productoAceptado.obtenerCosto(), productoAceptado.obtenerDuracion());
 		if(productoAceptado.obtenerTipoDeProducto().equals("Paquete")){
-			ArrayList<Atraccion> atraccionesDelPaquete = productoAceptado.obtenerAtracciones();
+			List<Atraccion> atraccionesDelPaquete = productoAceptado.obtenerAtracciones();
 			for(int i = 0; i < atraccionesDelPaquete.size(); i++){
 				removerProductoDeSugerencias(atraccionesDelPaquete.get(i).obtenerId());
 			}
@@ -127,15 +129,15 @@ public class RecomendadorDeAtracciones {
 	 * @param verificarTIpo Si es true, se ignorarar la verificacion de tipo a la hora de ver si un producto es recomendado para el turista
 	 * */
 	private void calcularAtraccionesRecomendadas(boolean verificarTIpo) {
-		ArrayList<Producto> paquetesRecomendados = obtenerProductosRecomendadas(paquetesPromocionales,verificarTIpo);
-		ArrayList<Producto> atraccionesRecomendadas = obtenerProductosRecomendadas(atracciones,verificarTIpo);
+		List<Producto> paquetesRecomendados = obtenerProductosRecomendadas(paquetesPromocionales,verificarTIpo);
+		List<Producto> atraccionesRecomendadas = obtenerProductosRecomendadas(atracciones,verificarTIpo);
 		agregarProductos(OrdenamientoDeAtracciones.ordenar(paquetesRecomendados));
 		agregarProductos(OrdenamientoDeAtracciones.ordenar(atraccionesRecomendadas));
 	}
 
 	
 	
-	private void agregarProductos(ArrayList<Producto> paquetes) {
+	private void agregarProductos(List<Producto> paquetes) {
 		Iterator<Producto> iteradorProducto = paquetes.iterator();
 		while(iteradorProducto.hasNext()){
 			Producto producto = iteradorProducto.next();
@@ -149,8 +151,8 @@ public class RecomendadorDeAtracciones {
 
 	
 	
-	private ArrayList<Producto> obtenerProductosRecomendadas(ArrayList<Producto> listaDeProductos, boolean verificarTIpo){
-		ArrayList<Producto> paquetesSugeridos = new ArrayList<Producto>();
+	private List<Producto> obtenerProductosRecomendadas(List<Producto> listaDeProductos, boolean verificarTIpo){
+		List<Producto> paquetesSugeridos = new ArrayList<Producto>();
 		Iterator<Producto> iteradorPaquetes = listaDeProductos.iterator();
 		while (iteradorPaquetes.hasNext()) {
 			Producto paquete = iteradorPaquetes.next();
@@ -195,7 +197,7 @@ public class RecomendadorDeAtracciones {
 	private boolean verificarSugerencia(int obtenerId) {
 		Iterator<Producto> iteradorAtracciones = productosRecomendados.iterator();
 		boolean seEncontro = false;
-		while(iteradorAtracciones.hasNext()){
+		while(iteradorAtracciones.hasNext() && !seEncontro){
 			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
 		}
 		return seEncontro;

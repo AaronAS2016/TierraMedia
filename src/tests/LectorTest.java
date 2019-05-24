@@ -35,7 +35,7 @@ public class LectorTest {
 	@Test
 	public void leerPreferenciaConTuristaDeId2() {
 		Turista turista = Lector.buscarTurista(2);
-		assertEquals("paisajes", turista.obtenerPreferencia());
+		assertEquals("paisaje", turista.obtenerPreferencia());
 	}
 	
 	@Test(expected = Error.class)

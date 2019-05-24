@@ -1,6 +1,5 @@
 package tierramedia;
-
-import java.util.ArrayList;
+import java.util.List;
 
 import atraccion.Atraccion;
 
@@ -11,7 +10,7 @@ public abstract class Producto implements Comparable<Producto>{
 	protected double duracion;
 	protected String nombre;
 	protected String tipo;
-	protected ArrayList<Atraccion> atracciones;
+	protected List<Atraccion> atracciones;
 	protected String tipoProducto;
 	
 	public int obtenerId() {
@@ -37,7 +36,7 @@ public abstract class Producto implements Comparable<Producto>{
 		return this.tipo;
 	}
 	
-	public ArrayList<Atraccion> obtenerAtracciones(){
+	public List<Atraccion> obtenerAtracciones(){
 		return this.atracciones;
 	}
 	
@@ -48,18 +47,19 @@ public abstract class Producto implements Comparable<Producto>{
 	
 	@Override
 	public int compareTo(Producto productoAComparar) {
-		int orden = 1;
+		int orden = -1;
 		boolean esMayor = (this.obtenerCosto() > productoAComparar
 				.obtenerCosto());
 		if (esMayor) {
-			orden = -1;
+			orden = 1;
 		} else if (this.obtenerCosto() == productoAComparar.obtenerCosto()) {
+			
 			if(this.obtenerDuracion() > productoAComparar.obtenerDuracion()) {
-				orden = -1;
+				orden = 1;
 			}else if(this.obtenerDuracion() == productoAComparar.obtenerDuracion()) {
 				orden = 0;
 			}else {
-				orden = 1;
+				orden = -1;
 			}
 		}
 		return orden;

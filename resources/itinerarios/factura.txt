@@ -3,7 +3,7 @@ Id de usuario:5
 Nombre:Aragorn.
 Tiempo Disponible:8.0hs.
 Tipo preferido:Degustacion
-Presupuesto Disponible:27$
+Presupuesto Disponible:4$
 
 =================== COMPRAS ======================
 
@@ -11,9 +11,13 @@ Paquete:La Comarca
 Tiempo:6.5hs.
 Precio:3$
 
+Paquete:Pack Aventura
+Tiempo:6.5hs.
+Precio:23$
+
 =================== RESUMEN ======================
-Precio total:3$
-Tiempo total:6.5hs.
+Precio total:26$
+Tiempo total:13.0hs.
 
 
 Gracias por su compra, Aragorn. :D 

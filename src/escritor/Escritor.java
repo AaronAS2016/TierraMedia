@@ -4,21 +4,21 @@ import herramientas.Validador;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import tierramedia.Producto;
 import turista.Turista;
 
 public class Escritor {
 	
-	private ArrayList<Producto> paquetes;
+	private List<Producto> paquetes;
 	private Turista usuarioActual;
 	private int precioTotal;
 	private double tiempoTotal;
 	private FileWriter factura;
 
 	
-	public Escritor(Turista usuarioActual, ArrayList<Producto> paquetes){
+	public Escritor(Turista usuarioActual, List<Producto> paquetes){
 	
 		this.paquetes = paquetes;
 		this.usuarioActual = usuarioActual;

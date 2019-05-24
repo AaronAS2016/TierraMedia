@@ -1,13 +1,15 @@
 package herramientas;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import tierramedia.Producto;
 
 public class OrdenamientoDeAtracciones {
 	
-	public static ArrayList<Producto> ordenar(ArrayList<Producto> atraccionesAOrdenar) {
+	public static List<Producto> ordenar(List<Producto> atraccionesAOrdenar) {
 
-		ArrayList<Producto> atraccionesOrdenadas;
+		List<Producto> atraccionesOrdenadas;
 		
 		int largo = atraccionesAOrdenar.size();
 
@@ -31,9 +33,9 @@ public class OrdenamientoDeAtracciones {
 		return atraccionesOrdenadas;
 	}
 	
-	public static ArrayList<Producto> mezclarAtracciones(ArrayList<Producto>primerMitad, ArrayList<Producto> segundaMitad) {
+	public static List<Producto> mezclarAtracciones(List<Producto>primerMitad, List<Producto> segundaMitad) {
 
-		ArrayList<Producto> mezcla = new ArrayList<Producto>(); 
+		List<Producto> mezcla = new ArrayList<Producto>(); 
 		
 		int iPrimerMitad = 0;
 		int iSegundaMitad = 0;
@@ -46,7 +48,7 @@ public class OrdenamientoDeAtracciones {
 			} else if (iSegundaMitad >= segundaMitad.size()) {
 				mezcla.add(primerMitad.get(iPrimerMitad));
 				iPrimerMitad++;
-			} else if (primerMitad.get(iPrimerMitad).compareTo(segundaMitad.get(iSegundaMitad)) < 0) {
+			} else if (primerMitad.get(iPrimerMitad).compareTo(segundaMitad.get(iSegundaMitad)) > 0) {
 				mezcla.add(primerMitad.get(iPrimerMitad));
 				iPrimerMitad++;
 
