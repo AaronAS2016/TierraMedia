@@ -88,7 +88,7 @@ public class RecomendadorDeAtracciones {
 	
 	public void aceptarProducto(Producto productoAceptado){
 		
-		boolean comproProducto = verificarCompra(productoAceptado.obtenerId());
+		boolean comproProducto = verificarCompra(productosAceptados, productoAceptado.obtenerId());
 		
 		if(comproProducto){
 			throw new Error("No puede comprar un producto que ya compro");
@@ -117,7 +117,6 @@ public class RecomendadorDeAtracciones {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		actualizarItinerarios();
 	}
 	
 	
@@ -141,7 +140,7 @@ public class RecomendadorDeAtracciones {
 		Iterator<Producto> iteradorProducto = paquetes.iterator();
 		while(iteradorProducto.hasNext()){
 			Producto producto = iteradorProducto.next();
-			if(!verificarSugerencia(producto.id)){				
+			if(!verificarCompra(productosRecomendados, producto.obtenerId())){				
 				this.productosRecomendados.add(producto);
 			}
 		}
@@ -185,27 +184,14 @@ public class RecomendadorDeAtracciones {
 	}
 	
 
-	private boolean verificarCompra(int obtenerId) {
-		Iterator<Producto> iteradorAtracciones = atracciones.iterator();
+	private boolean verificarCompra(List<Producto> producto, int obtenerId) {
+		Iterator<Producto> iteradorProducto = producto.iterator();
 		boolean seEncontro = false;
-		while(iteradorAtracciones.hasNext()){
-			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
+		while(iteradorProducto.hasNext() && !seEncontro){
+			seEncontro = (iteradorProducto.next().obtenerId() == obtenerId);
 		}
 		return seEncontro;
 	}
 	
-	private boolean verificarSugerencia(int obtenerId) {
-		Iterator<Producto> iteradorAtracciones = productosRecomendados.iterator();
-		boolean seEncontro = false;
-		while(iteradorAtracciones.hasNext() && !seEncontro){
-			seEncontro = (iteradorAtracciones.next().obtenerId() == obtenerId);
-		}
-		return seEncontro;
-	}
-	
-	private void actualizarItinerarios() {
-		//TODO: Completar metodo
-	}
-
 
 }
